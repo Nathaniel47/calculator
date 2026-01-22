@@ -1,0 +1,50 @@
+body{
+    background-color: #121212;
+}
+
+#display{
+    width: 350px;
+    height: 100px;
+    color: #000000;
+    text-wrap: wrap;
+}
+
+#container, #btns{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 20px;
+
+}
+
+#btns{
+    padding: 10px 10px;
+    background-color: #1E1E1E;
+    gap: 15px;
+}
+
+#btns button{
+    color: #FFFFFF;
+    background-color: #2C2C2C;
+    padding: 10px 20px;
+}
+
+.rows{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+#numbers{
+    display: flex;
+    gap: 5px;
+}
+
+#symbols button{
+    background-color: #FF9F0A;
+}
+
+#equalSign {
+    background-color: #30D158 !important;
+}
