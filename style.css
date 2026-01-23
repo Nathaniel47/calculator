@@ -42,9 +42,11 @@ body{
 }
 
 #symbols button{
+    font-size: larger;
     background-color: #FF9F0A;
 }
 
 #equalSign {
+    font-size: larger;
     background-color: #30D158 !important;
 }
