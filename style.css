@@ -1,5 +1,5 @@
 body{
-    background-color: #121212;
+    background-color: #14181d;
 }
 
 #display{
@@ -26,7 +26,7 @@ body{
 
 #btns button{
     color: #FFFFFF;
-    background-color: #2C2C2C;
+    background-color: #262a32;
     padding: 10px 20px;
 }
 
@@ -43,7 +43,8 @@ body{
 
 #symbols button{
     font-size: larger;
-    background-color: #FF9F0A;
+    background-color: #f58a40;
+    border-radius: 5px 5px 10px;
 }
 
 #equalSign {
