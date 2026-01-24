@@ -7,6 +7,7 @@ body{
     height: 100px;
     color: #000000;
     text-wrap: wrap;
+    background-color: #d0e5e3;
 }
 
 #container, #btns{
