@@ -24,10 +24,12 @@ body{
 }
 
 #btns button{
+    font-size: larger;
     color: #FFFFFF;
     background-color: #262a32;
-    padding: 10px 20px;
+    padding: 7px 25px;
     border: none;
+    border-radius: 5px 5px 10px 10px;
 }
 
 .rows{
@@ -44,7 +46,7 @@ body{
 #symbols button{
     font-size: larger;
     background-color: #f58a40;
-    border-radius: 5px 5px 10px;
+    border-radius: 5px 5px 10px 10px;
 }
 
 #equalSign {
