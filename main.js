@@ -16,8 +16,8 @@ const divide = function (...numbers){
 }
 
 
-let firstNum;
-let secomdNum;
+let firstNum = 0;
+let secondNum = 0;
 let operator;
 
 const operate = function (operator, num1, num2){
@@ -34,5 +34,28 @@ const operate = function (operator, num1, num2){
         return divide(num1, num2)
     };
 };
+
+let screen = document.querySelector("#display");
+
+function updateNumVariable(){
+    if (firstNum == 0){
+        firstNum = button.value;
+        screen.appendChild(firstNum);}
+    else {
+        secondNum = numberButtons.value;
+        screen.appendChild(secondNum);
+    }
+};
+
+let numberButtons = document.querySelectorAll(".numberBtn");
+numberButtons.forEach(numberButton => numberButton.addEventListener(click, updateNumVariable));
+
+function updateOperatorVariable(){
+   operator = button.value;
+   screen.appendChild(operator);
+};
+let operatorButtons = document.querySelectorAll(".operatorBtn");
+operatorButtons.forEach(operatorButton => operatorButton.addEventListener(click, updateOperatorVariable));
+
 
 console.log(operate("*",7,-5));
