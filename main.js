@@ -35,27 +35,75 @@ const operate = function (operator, num1, num2){
     };
 };
 
-let screen = document.querySelector("#display");
+let display = document.querySelector("#display");
 
-function updateNumVariable(){
-    if (firstNum == 0){
-        firstNum = button.value;
-        screen.appendChild(firstNum);}
-    else {
-        secondNum = numberButtons.value;
-        screen.appendChild(secondNum);
+function updateNumVariable(e){
+    let val = e.target.value;
+
+    if (operator == undefined ){
+        if (firstNum == 0){
+            firstNum = val;
+            display.value = firstNum;
+        } else {
+             firstNum += val;
+             display.value = firstNum;
+        }
+       }
+    else { 
+        if (secondNum == 0){
+            secondNum = val;
+            display.value = secondNum;
+        } else {
+             secondNum += val;
+             display.value = secondNum;
+        }
     }
+    
 };
 
 let numberButtons = document.querySelectorAll(".numberBtn");
-numberButtons.forEach(numberButton => numberButton.addEventListener(click, updateNumVariable));
+numberButtons.forEach(numberButton => numberButton.addEventListener("click", updateNumVariable));
 
-function updateOperatorVariable(){
-   operator = button.value;
-   screen.appendChild(operator);
+function updateOperatorVariable(e){
+    let val = e.target.value;
+    let results;
+    
+   if (val !== "=")
+   {
+     if (operator === '')
+      {
+        alert("Wrong or no operator input. Input an operator.")
+        secondNum = 0;
+        display.value = firstNum;
+      } 
+     else if (operator === "+" || operator === "-" || operator === "*" || operator === "/")
+      {
+        results = operate(operator, Number(firstNum), Number(secondNum));
+        display.value = results;
+        firstNum = results;
+        secondNum = 0;
+        operator = val;
+      }  
+     else 
+      {
+        operator = val;
+      } 
+   }
+    else 
+    {
+       results = operate(operator, Number(firstNum), Number(secondNum));
+       display.value = results;
+       firstNum = results;
+       secondNum = 0;
+       operator = '';
+   
+}
+   
 };
 let operatorButtons = document.querySelectorAll(".operatorBtn");
-operatorButtons.forEach(operatorButton => operatorButton.addEventListener(click, updateOperatorVariable));
+operatorButtons.forEach(operatorButton => operatorButton.addEventListener("click", updateOperatorVariable));
 
-
-console.log(operate("*",7,-5));
+let clearBtn = document.querySelector("#clear");
+clearBtn.addEventListener("click", () => {display.value = "";
+    firstNum = 0;
+    secondNum = 0;})

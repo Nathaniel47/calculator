@@ -5,6 +5,7 @@ body{
 #display{
     width: 350px;
     height: 100px;
+    font-size: xx-large;
     color: #000000;
     text-wrap: wrap;
     background-color: #d0e5e3;
