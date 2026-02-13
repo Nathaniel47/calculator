@@ -40,7 +40,7 @@ let display = document.querySelector("#display");
 function updateNumVariable(e){
     let val = e.target.value;
 
-    if (operator == undefined ){
+    if (operator == undefined || operator == '' ){
         if (firstNum == 0){
             firstNum = val;
             display.value = firstNum;
@@ -70,13 +70,7 @@ function updateOperatorVariable(e){
     
    if (val !== "=")
    {
-     if (operator === '')
-      {
-        alert("Wrong or no operator input. Input an operator.")
-        secondNum = 0;
-        display.value = firstNum;
-      } 
-     else if (operator === "+" || operator === "-" || operator === "*" || operator === "/")
+     if (operator === "+" || operator === "-" || operator === "*" || operator === "/")
       {
         results = operate(operator, Number(firstNum), Number(secondNum));
         display.value = results;
@@ -90,20 +84,32 @@ function updateOperatorVariable(e){
       } 
    }
     else 
-    {
-       results = operate(operator, Number(firstNum), Number(secondNum));
-       display.value = results;
-       firstNum = results;
-       secondNum = 0;
-       operator = '';
+    { 
+        if (operator === '')
+      {
+        alert("Wrong or no operator input. Input an operator.")
+        secondNum = 0;
+        display.value = firstNum;
+      } 
+     else 
+      {
+        results = operate(operator, Number(firstNum), Number(secondNum));
+        display.value = results;
+        firstNum = 0;
+        secondNum = 0;
+        operator = '';
    
-}
-   
+     }
+    } 
 };
 let operatorButtons = document.querySelectorAll(".operatorBtn");
 operatorButtons.forEach(operatorButton => operatorButton.addEventListener("click", updateOperatorVariable));
 
 let clearBtn = document.querySelector("#clear");
-clearBtn.addEventListener("click", () => {display.value = "";
-    firstNum = 0;
-    secondNum = 0;})
+clearBtn.addEventListener("click", () => 
+    {
+        display.value = "";
+        firstNum = 0;
+        secondNum = 0;
+        operator = '';
+    })
