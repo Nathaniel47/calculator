@@ -51,6 +51,10 @@ body{
     border-radius: 5px 5px 10px 10px;
 }
 
+.decimalPoint button{
+    font-size: xx-large;
+}
+
 #equalSign {
     font-size: larger;
     background-color: #30D158 !important;
