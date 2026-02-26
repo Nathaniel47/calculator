@@ -14,7 +14,7 @@ const multiply = function (...numbers){
 }
 
 const divide = function (...numbers){
-    return numbers.reduce((quotient, number) => quotient / number);
+    return numbers.reduce((quotient, number) =>( number === 0 ? "Error" : quotient / number));
 }
 
 //Initialization of operator and operand variables
@@ -46,6 +46,8 @@ function updateNumVariable(e){
 
     if (operator == undefined || operator == '' ){
         if (firstNum === ''){
+            
+
             if (val === "."){
                 firstNum = '0.';
                 display.value = firstNum;
@@ -69,6 +71,8 @@ function updateNumVariable(e){
             }
     }
     else {
+        
+
         if (secondNum === ''){
             if (val === "."){
                 secondNum = '0.';
@@ -109,7 +113,7 @@ function updateOperatorVariable(e){
       {
         results = operate(operator, Number(firstNum), Number(secondNum));
         display.value = results;
-        firstNum = results;
+        firstNum = results.toString();
         secondNum = '';
         operator = val;
       }  
@@ -130,7 +134,7 @@ function updateOperatorVariable(e){
       {
         results = operate(operator, Number(firstNum), Number(secondNum));
         display.value = results;
-        firstNum = '';
+        firstNum = results.toString();
         secondNum = '';
         operator = '';
    
@@ -148,3 +152,55 @@ clearBtn.addEventListener("click", () =>
         secondNum = '';
         operator = '';
     })
+
+
+
+    let backSpace = document.querySelector("#backSpc");
+    backSpace.addEventListener("click",() =>{
+        
+       if (secondNum){
+        secondNum = secondNum.slice(0,-1);
+        display.value = secondNum || "0";
+       }
+       else if (!operator && firstNum){
+        firstNum = firstNum.slice(0,-1);
+        display.value = firstNum || "0";
+       }
+    });
+
+
+    document.addEventListener('keydown', (e) => {
+    const key = e.key;
+
+    // 1. Handle Numbers & Decimal
+    if (/[0-9.]/.test(key)) {
+        // We mock the event object 'e' that your function expects
+        updateNumVariable({ target: { value: key } });
+    }
+
+    // 2. Handle Operators
+    if (['+', '-', '*', '/'].test(key)) {
+        updateOperatorVariable({ target: { value: key } });
+    }
+
+    // 3. Handle Equals (Enter or =)
+    if (key === 'Enter' || key === '=') {
+        // Prevent default to stop Enter from triggering the last clicked button
+        e.preventDefault(); 
+        updateOperatorVariable({ target: { value: "=" } });
+    }
+
+    // 4. Handle Backspace
+    if (key === 'Backspace') {
+        // Manually trigger your backspace logic
+        backSpace.click(); 
+    }
+
+    // 5. Handle Clear (Escape)
+    if (key === 'Escape') {
+        clearBtn.click();
+    }
+});
+
+
+
