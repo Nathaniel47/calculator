@@ -1,10 +1,12 @@
+//Functions for the various arithmetic operations
+
 const add = function (...numbers){
     return numbers.reduce((sum, number) => sum + number, 0);
 }
 
 
 const subtract = function (...numbers){
-    return numbers.reduce((difference, number) => difference -number);
+    return numbers.reduce((difference, number) => difference - number);
 }
 
 const multiply = function (...numbers){
@@ -15,48 +17,81 @@ const divide = function (...numbers){
     return numbers.reduce((quotient, number) => quotient / number);
 }
 
-
-let firstNum = 0;
-let secondNum = 0;
+//Initialization of operator and operand variables
+let firstNum = '';
+let secondNum = '';
 let operator;
 
+//Function for arithmetic operation
 const operate = function (operator, num1, num2){
     if (operator === "+"){
-        return add(num1, num2)
+        return add(Number(num1), Number(num2))
     } 
     else if (operator === "-"){
-        return subtract(num1, num2)
+        return subtract(Number(num1), Number(num2))
     }
     else if (operator === "*"){
-        return multiply(num1, num2)
+        return multiply(Number(num1), Number(num2))
     } 
     else if (operator === "/"){
-        return divide(num1, num2)
+        return divide(Number(num1), Number(num2))
     };
 };
 
 let display = document.querySelector("#display");
 
+//function to update operand variables when a button is clicked
 function updateNumVariable(e){
     let val = e.target.value;
 
     if (operator == undefined || operator == '' ){
-        if (firstNum == 0){
+        if (firstNum === ''){
+            if (val === "."){
+                firstNum = '0.';
+                display.value = firstNum;
+            }
+            else{
             firstNum = val;
             display.value = firstNum;
-        } else {
-             firstNum += val;
-             display.value = firstNum;
+            }
+        } 
+        else{
+            if (val === "."){
+                if(!firstNum.includes(".")){
+                    firstNum += val;
+                    display.value = firstNum;
+                }
+            }
+            else{
+                firstNum += val;
+                display.value = firstNum;
+                }
+            }
+    }
+    else {
+        if (secondNum === ''){
+            if (val === "."){
+                secondNum = '0.';
+                display.value = secondNum;
+            }
+            else{
+                secondNum = val;
+                display.value = secondNum;
+            }
         }
-       }
-    else { 
-        if (secondNum == 0){
-            secondNum = val;
-            display.value = secondNum;
-        } else {
-             secondNum += val;
-             display.value = secondNum;
-        }
+        else{
+            if (val === "."){
+                if(!secondNum.includes(".")){
+                    secondNum += val;
+                    display.value = secondNum;
+                }
+            }
+            else{
+                secondNum += val;
+                display.value = secondNum;
+                }
+            }
+
     }
     
 };
@@ -75,7 +110,7 @@ function updateOperatorVariable(e){
         results = operate(operator, Number(firstNum), Number(secondNum));
         display.value = results;
         firstNum = results;
-        secondNum = 0;
+        secondNum = '';
         operator = val;
       }  
      else 
@@ -88,15 +123,15 @@ function updateOperatorVariable(e){
         if (operator === '')
       {
         alert("Wrong or no operator input. Input an operator.")
-        secondNum = 0;
+        secondNum = '';
         display.value = firstNum;
       } 
      else 
       {
         results = operate(operator, Number(firstNum), Number(secondNum));
         display.value = results;
-        firstNum = 0;
-        secondNum = 0;
+        firstNum = '';
+        secondNum = '';
         operator = '';
    
      }
@@ -109,7 +144,7 @@ let clearBtn = document.querySelector("#clear");
 clearBtn.addEventListener("click", () => 
     {
         display.value = "";
-        firstNum = 0;
-        secondNum = 0;
+        firstNum = '';
+        secondNum = '';
         operator = '';
     })
