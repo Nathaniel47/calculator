@@ -59,3 +59,23 @@ body{
     font-size: larger;
     background-color: #30D158 !important;
 }
+
+#backSpc {
+    padding: 4px 20px 2px 20px !important;
+}
+
+#clearing {
+    display: flex;
+    gap: 5px;
+
+}
+
+#clear {
+    color: #000000 !important;
+}
+
+#clearing button{
+    font-size: larger;
+    background-color: #f58a40;
+    border-radius: 5px 5px 10px 10px;
+}
